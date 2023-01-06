@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
+        android:name=".GlobalApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,11 +21,15 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <data android:host="oauth"
+                    android:scheme="kakaod9cc505aa61591d224d3a5c0f92abfe0" />
+
             </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
         </activity>
     </application>
 
