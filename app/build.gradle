@@ -3,6 +3,11 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+//api key 사용할 수 있게 설정
+def Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+
 android {
     namespace 'com.example.pretaskproject'
     compileSdk 32
@@ -13,6 +18,10 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "URL_BOOKSTORE", properties['url.bookstore']
+        buildConfigField "String", "API_KEY", properties['api.key']
+        buildConfigField "String", "ENDPOINT_GET_BOOKSTORE_LOC", properties['endPoint.getBookstoreLoc']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,6 +39,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    viewBinding {
+        enabled true
+    }
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
@@ -41,4 +56,11 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    //GSON
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'  // String 처리시
 }
